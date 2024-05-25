@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content%}
+<div hx-target="this" hx-swap="outerHTML">
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p}}
+        {% if book %}
+        <button hx-post="{% url 'book-update' book.id %}" type="button">Save</button>
+        {% else %}
+        <button hx-post="." type="button">Create</button>
+        {% endif %}
+    </form>
+</div>
+{% endblock %}
